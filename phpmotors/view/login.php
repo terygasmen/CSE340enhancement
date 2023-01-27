@@ -18,7 +18,7 @@
         <?php //include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php';
         echo $navList; ?>
     </nav>
-    <main>
+    <main class='login'>
         <form>
             <label for="email">Email address:</label>
             <input type="email" id="email" name="email" required>
@@ -26,8 +26,9 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Login">
         </form>
+       <span><p>No Account?</p><a href="../accounts/index.php">Sign up</a></span>
     </main>
     <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>

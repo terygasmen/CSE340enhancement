@@ -24,7 +24,12 @@ $action = filter_input(INPUT_POST, 'action');
 }
 
 switch ($action){
-    case '':
+    case 'login':
+        include '../view/login.php';
+        break;
+    case 'registration':
+        include '../view/registration.php';
         break;
     default:
+        break;
 }
