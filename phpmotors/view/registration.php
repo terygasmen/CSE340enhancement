@@ -19,7 +19,7 @@
         echo $navList; ?>
     </nav>
     <main>
-    <form>
+    <form action="/accounts/index.php" method="POST">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
         <br>
@@ -32,7 +32,9 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" name="submit" id="regbtn" value="Register">
+                <!-- Add the action name - value pair -->
+            <input type="hidden" name="action" value="register">
     </form>
 
     </main>

@@ -19,16 +19,18 @@
         echo $navList; ?>
     </nav>
     <main class='login'>
-        <form>
+        <form action="/accounts/" method="POST">
             <label for="email">Email address:</label>
             <input type="email" id="email" name="email" required>
             <br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <br>
-            <input type="submit" value="Login">
+            <input type="submit" name="submit" id="regbtn" value="Login">
+                <!-- Add the action name - value pair -->
+                <input type="hidden" name="action" value="Login">
         </form>
-       <span><p>No Account?</p><a href="../accounts/index.php">Sign up</a></span>
+       <span><p>No Account?</p><a href="../accounts/index.php?action=registration">Sign up</a></span>
     </main>
     <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
