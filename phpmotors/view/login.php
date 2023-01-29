@@ -18,7 +18,7 @@
         <?php //include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php';
         echo $navList; ?>
     </nav>
-    <main class='login'>
+    <main class='login_page'>
         <form action="/accounts/" method="POST">
             <label for="email">Email address:</label>
             <input type="email" id="email" name="email" required>

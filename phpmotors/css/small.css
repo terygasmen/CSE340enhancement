@@ -19,10 +19,18 @@ html {
 }
 body{
     background-image: url('../images/checker-chess-square-abstract-black-white-background-vector_231786-5341.webp');
+    border: 5px solid var(--darkblue);
+    border-radius: 15px;
 }  
 header, nav, main, footer {
     background-color: white;
     padding: 1rem;
+}
+header {
+    border-radius: 10px 10px 0 0;
+}
+footer {
+    border-radius: 0 0 10px 10px;
 }
 .main_page {
     max-width: 100%;
@@ -44,10 +52,13 @@ a {
     text-decoration: none;
     color: var(--darkgray);
 }
-.login {
-    padding: 1rem;
-    margin: 1rem;
+.login_page, .registration_page {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+}
+form {
     display: flex;
     flex-direction: column;
 }

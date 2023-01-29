@@ -1,10 +1,7 @@
 @media only screen and (min-width: 606px) {
-    body {
-        padding: 0.8rem 4rem;
-    }
-    .login {
-        padding: 0 5rem;
-    }
+    .login_page, .registration_page {
+    padding: 2rem 10rem;
+}
     .main-page {
         display: grid;
         grid-template-columns: 1fr 1fr;

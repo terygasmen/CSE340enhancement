@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/large.css" media="screen">
     <title>PHP Motors | Registration</title>
 </head>
-<body>
+<body class="registration_page">
     <header>
     <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
     </header>
