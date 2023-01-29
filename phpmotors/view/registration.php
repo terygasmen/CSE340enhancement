@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/large.css" media="screen">
     <title>PHP Motors | Registration</title>
 </head>
-<body class="registration_page">
+<body >
     <header>
     <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
     </header>
@@ -18,7 +18,7 @@
         <?php //include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php';
         echo $navList; ?>
     </nav>
-    <main>
+    <main class="registration_page">
     <form action="/accounts/index.php" method="POST">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
