@@ -30,7 +30,7 @@
                 <!-- Add the action name - value pair -->
                 <input type="hidden" name="action" value="Login">
         </form>
-       <span><p>No Account?</p><a href="../accounts/index.php?action=registration">Sign up</a></span>
+       <div><p>No Account?</p><a href="../accounts/index.php?action=registration">Sign up</a></div>
     </main>
     <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
