@@ -19,7 +19,12 @@
         echo $navList; ?>
     </nav>
     <main class='login_page'>
-        <form action="/accounts/" method="POST">
+    <?php
+        if (isset($message)) {
+        echo $message;
+        }
+        ?>
+        <form action="/phpmotors/accounts/index.php" method="post">
             <label for="email">Email address:</label>
             <input type="email" id="email" name="email" required>
             <br>

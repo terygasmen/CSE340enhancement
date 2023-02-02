@@ -19,22 +19,27 @@
         echo $navList; ?>
     </nav>
     <main class="registration_page">
-    <form action="/accounts/index.php" method="POST">
+        <?php 
+            if(isset($message)) {
+            echo $message;
+            }
+        ?>
+    <form action="/accounts/index.php" method="post">
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required>
+        <input type="text" id="firstName" name="clientFirstname">
         <br>
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required>
+        <input type="text" id="lastName" name="clientLastname">
         <br>
         <label for="email">Email address:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="clientEmail">
         <br>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="clientPassword">
         <br>
         <input type="submit" name="submit" id="regbtn" value="Register">
-                <!-- Add the action name - value pair -->
-            <input type="hidden" name="action" value="register">
+        <!-- Add the action name - value pair -->
+        <input type="hidden" name="action" value="register">
     </form>
 
     </main>
