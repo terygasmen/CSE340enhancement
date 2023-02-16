@@ -115,7 +115,7 @@ switch ($action){
         break;
     default:
         // $classificationList = buildClassificationList($classifications);
-        // include "../view/vehicle-management.php";
+        include "../view/vehicle-management.php";
         break;
     }
 ?>
