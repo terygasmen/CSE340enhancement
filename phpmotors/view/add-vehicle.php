@@ -32,9 +32,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Ailen Mansilla">
-    <link rel="stylesheet" href="../css/small.css" media="screen">
-    <link rel="stylesheet" href="../css/large.css" media="screen">
-    <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/small.css" media="screen">
+    <link rel="stylesheet" href="css/large.css" media="screen">
     <title>PHP Motors</title>
 </head>
 <body>
