@@ -24,7 +24,7 @@
             echo $message;
             }
         ?>
-    <form action="/accounts/index.php" method="post">
+    <form action="/phpmotors/accounts/index.php" method="post">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="clientFirstname">
         <br>

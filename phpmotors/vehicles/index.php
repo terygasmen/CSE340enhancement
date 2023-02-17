@@ -29,6 +29,7 @@ $navList .= '</ul>';
 $carClassifications = "<select name='carClassifications'>";
 foreach($classifications as $classification) {
     $tag = '<option value=""';
+    // $tag = '<option value="' . $classification['classificationId'] . '"';
     if(isset($classType)){
         if ($classification['classificationId'] === $classType){
             $tag .= ' selected ';
@@ -57,6 +58,10 @@ switch ($action){
         break;
 
     case 'addVehicle':
+
+        // test output of variables
+        // var_dump($classType);
+        
         // Filter the input
         $classType = filter_input(INPUT_POST, 'carClassifications');
         $make = filter_input(INPUT_POST, 'make');
@@ -77,6 +82,7 @@ switch ($action){
 
         // Add Data to database
         $AddVehicleReport = newVehicle($make, $model, $description, $image, $thumb, $price, $stock, $color, $classType);
+
         // Check and report the result
         if($AddVehicleReport === 1){
             $message = "<p>Vehical registration was a success.</p>";
@@ -113,7 +119,12 @@ switch ($action){
             exit;
         }
         break;
-    default:
+
+    case 'vehicleManagement':
+        include "../view/vehicle-management.php";
+        break;
+    
+        default:
         // $classificationList = buildClassificationList($classifications);
         include "../view/vehicle-management.php";
         break;

@@ -32,8 +32,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Ailen Mansilla">
-    <link rel="stylesheet" href="css/small.css" media="screen">
-    <link rel="stylesheet" href="css/large.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/small.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/large.css" media="screen">
     <title>PHP Motors</title>
 </head>
 <body>
@@ -51,7 +51,7 @@
                     echo $message;
                 }
             ?>
-            <form action="/vehicles/index.php" method="POST">
+            <form action="/phpmotors/vehicles/index.php" method="POST">
                 <label>Classification</label>
                 <br>
                 <?php echo $carClassifications; ?>
@@ -59,7 +59,7 @@
                 <br>
                 <label>Make</label>
                 <br>
-                <input type="text" name="make" id="make" <?php if(isset($make)){echo "value='$make'";}  ?> required>
+                <input type="text" name="make" id="make" <?php if(isset($make)) {echo "value='$make'";}  ?> required>
                 <br>
                 <br>
                 <label>Model</label>

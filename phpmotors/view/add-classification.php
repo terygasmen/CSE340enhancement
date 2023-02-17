@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Ailen Mansilla">
-    <link rel="stylesheet" href="css/small.css" media="screen">
-    <link rel="stylesheet" href="css/large.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/small.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/large.css" media="screen">
     <title>PHP Motors</title>
 </head>
 <body>
@@ -23,10 +23,10 @@
                     echo $message;
                 }
             ?>
-            <form action="/vehicles/index.php" method="POST">
+            <form action="/phpmotors/vehicles/index.php" method="POST">
                 <label>Classification Name</label>
                 <br>
-                <input type="text" name="newClassification" id="newClassification" required>
+                <input type="text" name="newClassification" id="newClassification">
                 <br>
                 <input type="submit" name="submit" id="regbtn" value="Register">
                 <!-- Add the action name - value pair -->
