@@ -30,8 +30,8 @@ $carClassifications = "<select name='carClassifications'>";
 foreach($classifications as $classification) {
     $tag = '<option value=""';
     // $tag = '<option value="' . $classification['classificationId'] . '"';
-    if(isset($classType)){
-        if ($classification['classificationId'] === $classType){
+    if(isset($classificationId)){
+        if ($classification['classificationId'] === $classificationId){
             $tag .= ' selected ';
         }
     }
@@ -48,7 +48,6 @@ $action = filter_input(INPUT_POST, 'action');
 }
 
 switch ($action){
-
     case 'classification':
         include "../view/add-classification.php";
         break;
@@ -57,55 +56,15 @@ switch ($action){
         include "../view/add-vehicle.php";
         break;
 
-    case 'addVehicle':
-
-        // test output of variables
-        // var_dump($classType);
-        
-        // Filter the input
-        $classType = filter_input(INPUT_POST, 'carClassifications');
-        $make = filter_input(INPUT_POST, 'make');
-        $model = filter_input(INPUT_POST, 'model');
-        $description = filter_input(INPUT_POST, 'description');
-        $image = filter_input(INPUT_POST, 'image');
-        $thumb = filter_input(INPUT_POST, 'thumb');
-        $price = filter_input(INPUT_POST, 'price');
-        $stock = filter_input(INPUT_POST, 'stock');
-        $color = filter_input(INPUT_POST, 'color');
-
-        // Check for missing data
-        if(empty($classType) || empty($make) || empty($model) || empty($description) || empty($image) || empty($thumb) || empty($price) || empty($stock) || empty($color)){
-            $message = '<p>Please provide information for all empty form fields.</p>';
-            include '../view/add-vehicle.php';
-            exit; 
-        }
-
-        // Add Data to database
-        $AddVehicleReport = newVehicle($make, $model, $description, $image, $thumb, $price, $stock, $color, $classType);
-
-        // Check and report the result
-        if($AddVehicleReport === 1){
-            $message = "<p>Vehical registration was a success.</p>";
-            include '../view/vehicle-management.php';
-            exit;
-        } else {
-            $message = "<p>Sorry, but the registration failed. Please try again.</p>";
-            include '../view/add-vehicle.php';
-            exit;
-        }
-        break;
-
     case 'addClass':
         // Filter the input
         $newClass = filter_input(INPUT_POST, 'newClassification');
-
         // Check for missing data
         if(empty($newClass)){
             $message = '<p>Please provide information for all empty form fields.</p>';
             include '../view/add-classification.php';
             exit; 
         }
-
         // Add Data to database
         $AddClassReport = newClassification($newClass);
         // Check and report the result
@@ -118,7 +77,40 @@ switch ($action){
             include '../view/add-classification.php';
             exit;
         }
-        break;
+        // break;
+
+    case 'addVehicle':
+        // test output of variables
+        // var_dump($classType);
+        // Filter the input
+        $classificationId = filter_input(INPUT_POST, 'classificationId');
+        $make = filter_input(INPUT_POST, 'make');
+        $model = filter_input(INPUT_POST, 'model');
+        $description = filter_input(INPUT_POST, 'description');
+        $image = filter_input(INPUT_POST, 'image');
+        $thumb = filter_input(INPUT_POST, 'thumb');
+        $price = filter_input(INPUT_POST, 'price');
+        $stock = filter_input(INPUT_POST, 'stock');
+        $color = filter_input(INPUT_POST, 'color');
+        // Check for missing data
+        if(empty($classificationId) || empty($make) || empty($model) || empty($description) || empty($image) || empty($thumb) || empty($price) || empty($stock) || empty($color)){
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/add-vehicle.php';
+            exit; 
+        }
+        // Add Data to database
+        $AddVehicleReport = newVehicle($classificationId, $make, $model, $description, $image, $thumb, $price, $stock, $color);
+        // Check and report the result
+        if($AddVehicleReport === 1){
+            $message = "<p>Vehical registration was a success.</p>";
+            include '../view/vehicle-management.php';
+            exit;
+        } else {
+            $message = "<p>Sorry, but the registration failed. Please try again.</p>";
+            include '../view/add-vehicle.php';
+            exit;
+        }
+        // break;
 
     case 'vehicleManagement':
         include "../view/vehicle-management.php";

@@ -1,29 +1,3 @@
-<!-- 
-// Contain a form for adding a new vehicle to the inventory table.
-// When indicating the classification the vehicle belongs to, the classification must use the "select" element's drop-down list that should have been pre-built in the controller.
-// When adding images use the path to the "No Image Available" image that you downloaded and stored in this enhancement.
-// The view must have the means of displaying messages returned to it from the controller.
-// The form must send all data to the vehicles controller for checking and insertion to the database.
-// If the new vehicle is added successfully, a message to that affect must be displayed in the "add new vehicle" view. -->
-
-
-<?php
-//MOVE THIS TO THE VEHICLES/INDEX.PHP  (CONTROLLER)
-// // Build a car classification drop down list for the form
-// $carClassifications = "<select name = 'carClassifications'>";
-// foreach($classifications as $classification) {
-//     $tag = '<option value=""';
-//     if(isset($classType)){
-//         if ($classification['classificationId'] === $classType){
-//             $tag .= ' selected ';
-//         }
-//     }
-//     $tag .= '>'.$classification['classificationName'].'</option>';
-//     $tag = substr_replace($tag, $classification['classificationId'], 15, 0);
-//     $carClassifications .= $tag;
-// }
-// $carClassifications .= '</select>';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +43,7 @@
                 <br>
                 <label>Description</label>
                 <br>
-                <textarea name="description" rows="10" cols="30" required><?php if(isset($description)){echo "$description";}  ?></textarea>
+                <textarea name="description" rows="10" cols="30" required><?php if(isset($description)){echo $description;};  ?></textarea>
                 <br>
                 <br>
                 <label>Image Path</label>
@@ -89,12 +63,12 @@
                 <br>
                 <label># In Stock</label>
                 <br>
-                <input type="number" name="stock" id="stock" <?php if(isset($stock)){echo "value='$stock'";}  ?> required>
+                <input type="number" name="stock" id="stock" <?php if(isset($stock)){echo "value='$stock'";}  ?> required> 
                 <br>
                 <br>
                 <label>Color</label>
                 <br>
-                <input type="text" name="color" id="color" <?php if(isset($color)){echo "value='$color'";}  ?> required>
+                <input type="text" name="color" id="color" <?php if(isset($color)){echo "value='$color'";} ?> required>
                 <br>
                 <input type="submit" name="submit" id="regbtn" value="Add Vehicle">
                 <!-- Add the action name - value pair -->
