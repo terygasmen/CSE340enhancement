@@ -9,17 +9,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Ailen Mansilla">
-    <link rel="stylesheet" href="../css/small.css" media="screen">
-    <link rel="stylesheet" href="../css/large.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/small.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/large.css" media="screen">
     <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Share+Tech&display=swap" rel="stylesheet">
     <title>Vehicle Management - PHP Motors</title>
 </head>
 <body>
     <header>
-    <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
+        <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
     </header>
     <nav>
-    <?php echo $navList; ?>
+        <?php echo $navList; ?>
     </nav>
     <main>
     <h1>Vehicle Management</h1>
@@ -28,8 +28,12 @@
                     echo $message;
                 }
             ?>
-            <p><a href = "/phpmotors/vehicles/index.php/?action=classification">Add a car classification.</a></p>
-            <p><a href = "/phpmotors/vehicles/index.php/?action=vehicle">Add a vehicle to inventory.</a></p>
+            <div id="links-add-vehicle-and-classification">
+                <ul>
+                    <li><a href = "/phpmotors/vehicles/?action=classification">Add a car classification.</a></li>
+                    <li><a href = "/phpmotors/vehicles/?action=vehicle">Add a vehicle to inventory.</a></li>
+                </ul>
+            </div>
             <?php
             if (isset($classificationList)) { 
                 echo '<h2>Vehicles By Classification</h2>'; 

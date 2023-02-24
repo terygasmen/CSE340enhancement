@@ -97,6 +97,7 @@ nav ul{
     color: white;
     font-size: 1rem;
     display: block;
+    list-style: none;
 } nav li a:hover {
     background-color: var(--darkblue);
     color: white;
@@ -162,6 +163,15 @@ main div {
 /* car reviews */
 #car-reviews ul li {
     padding: 0.5rem;
+}
+
+/* vechiles page */
+#links-add-vehicle-and-classification ul {
+    list-style: none;
+    padding: 0;
+} #links-add-vehicle-and-classification ul a {
+    padding-bottom: 0.5rem;
+    color: black;
 }
 
 /* Footer */

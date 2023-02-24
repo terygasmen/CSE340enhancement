@@ -21,23 +21,22 @@ function newClassification($classifcationName){
 }
 
 // Contain a function for inserting a new vehicle to the inventory table.
-
-function newVehicle($make, $model, $description, $image, $thumb, $price, $stock, $color, $classificationId){
+function newVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $InvColor, $classificationId){
     // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
     // The SQL statement
-    $sql = 'INSERT INTO inventory (make, model, description, image, thumb, price, stock, color, classificationId)
-            VALUES (:make, :model, :description, :image, :thumb, :price, :stock, :color, :classificationId)';
+    $sql = 'INSERT INTO inventory (invMake, invModel, invDescription, invImage, invThumbnail, invPrice, invStock, invColor, classificationId)
+            VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, :invStock, :invColor, :classificationId)';
     // Create the prepared statement using the phpmotors connection
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':make', $make, PDO::PARAM_STR);
-    $stmt->bindValue(':model', $model, PDO::PARAM_STR);
-    $stmt->bindValue(':description', $description, PDO::PARAM_STR);
-    $stmt->bindValue(':image', $image, PDO::PARAM_STR);
-    $stmt->bindValue(':thumb', $thumb, PDO::PARAM_STR);
-    $stmt->bindValue(':price', $price, PDO::PARAM_STR);
-    $stmt->bindValue(':stock', $stock, PDO::PARAM_STR);
-    $stmt->bindValue(':color', $color, PDO::PARAM_STR);
+    $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
+    $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
+    $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
+    $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
+    $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
+    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
+    $stmt->bindValue(':invStock', $invStock, PDO::PARAM_STR);
+    $stmt->bindValue(':invColor', $InvColor, PDO::PARAM_STR);
     $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_STR);
     // Insert the data
     $stmt->execute();

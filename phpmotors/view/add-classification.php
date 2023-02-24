@@ -23,12 +23,11 @@
                     echo $message;
                 }
             ?>
-            <form action="/phpmotors/vehicles/index.php" method="POST">
-                <label>Classification Name</label>
-                <br>
-                <input type="text" name="newClassification" id="newClassification">
-                <br>
-                <input type="submit" name="submit" id="regbtn" value="Register">
+            <form method="POST" action="/phpmotors/vehicles/index.php"  class="add-form">
+                <label for="newClassification">Classification Name</label><br>
+                <span class="password-specifications">The classification name can not be longer than 30 characters</span><br>
+                <input type="text" maxlength="30" name="newClassification" id="newClassification" required><br>
+                <input type="submit" class="submit" name="submit" id="regbtn" value="Register">
                 <!-- Add the action name - value pair -->
                 <input type="hidden" name="action" value="addClass">
             </form>
