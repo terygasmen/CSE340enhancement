@@ -56,7 +56,7 @@ switch ($action){
 
     case 'addVehicle':
             // Filter the input
-            $classType = trim(filter_input(INPUT_POST, 'carClassifications', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+            $classificationId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
             $make = trim(filter_input(INPUT_POST, 'make', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
             $model = trim(filter_input(INPUT_POST, 'model', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
             $description = trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -66,13 +66,13 @@ switch ($action){
             $stock = trim(filter_input(INPUT_POST, 'stock', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
             $color = trim(filter_input(INPUT_POST, 'color', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
             // Check for missing data
-            if(empty($classType) || empty($make) || empty($model) || empty($description) || empty($image) || empty($thumb) || empty($price) || empty($stock) || empty($color)){
+            if(empty($classificationId) || empty($make) || empty($model) || empty($description) || empty($image) || empty($thumb) || empty($price) || empty($stock) || empty($color)){
                 $message = '<p>Please provide information for all empty form fields.</p>';
                 include '../view/add-vehicle.php';
                 exit; 
             }
             // Add Data to database
-            $AddVehicleReport = newVehicle($make, $model, $description, $image, $thumb, $price, $stock, $color, $classType);
+            $AddVehicleReport = newVehicle($make, $model, $description, $image, $thumb, $price, $stock, $color, $classificationId);
             // Check and report the result
             if($AddVehicleReport === 1){
                 $message = "<p>Vehicle registration was a success.</p>";

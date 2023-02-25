@@ -1,6 +1,6 @@
 <?php
 // Build a car classification drop down list for the form
-$classifList = "<select id='carClassifications' name='carClassifications'>";
+$classifList = "<select id='classificationId' name='classificationId'>";
 foreach($classifications as $classification) {
     $classifList .= "<option value='$classification[classificationId]'";
     if(isset($classificationId)){
