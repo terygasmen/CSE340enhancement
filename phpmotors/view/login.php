@@ -20,11 +20,11 @@
     </nav>
     <main class='login_page'>
     <?php
-        if (isset($message)) {
-        echo $message;
-        }
+       if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+       }
         ?>
-        <form action="/phpmotors/accounts/index.php" method="post">
+        <form action="/phpmotors/accounts/" method="post">
             <label for="email">Email address:</label>
             <input type="email" id="email" name="email" required>
             <br>
