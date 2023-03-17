@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="co-authored by Ailen Mansilla, Tery Gasmen, Prince Chukwu">
     <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Share+Tech&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/small.css" media="screen">
-    <link rel="stylesheet" href="css/large.css" media="screen">
+    <link rel="stylesheet" href="../css/small.css" media="screen">
+    <link rel="stylesheet" href="../css/large.css" media="screen">
     <title>Home - PHP Motors</title>
 </head>
 <body class="main_page">
@@ -15,8 +15,7 @@
     <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
     </header>
     <nav>
-        <?php //include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php';
-        echo $navList; ?>
+        <?php echo $navList; ?>
     </nav>
     <main>
         <h1>Welcome to PHP Motors!</h1>
@@ -24,24 +23,24 @@
             <h2>DMC Delorean</h2>
             <p>3 Cup holders<br>Superman doors<br>Fuzzy dice!</p>
             <a href="#" class="own-button">Own Today</a>
-            <img src="images/delorean.jpg" class="car-picture" alt="dmc delorean car picture">
+            <img src="/phpmotors/images/delorean.jpg" class="car-picture" alt="dmc delorean car picture">
         </div>
         <div id="car-upgrades">
             <h3>Delorean Upgrades</h3>
             <div id='flux-capacitor'>
-                <img src="images/upgrades/flux-cap.png" alt="Flux capacitor">
+                <img src="/phpmotors/images/upgrades/flux-cap.png" alt="Flux capacitor">
                 <a href="#">Flux Capacitor</a>
             </div>
             <div id='flame-decals'>
-                <img src="images/upgrades/flame.jpg" alt="flame declas">
+                <img src="/phpmotors/images/upgrades/flame.jpg" alt="flame declas">
                 <a href="#">Flame Decals</a>
             </div>
             <div id='bumper-stickers'>
-                <img src="images/upgrades/bumper_sticker.jpg" alt="bumper sticker">
+                <img src="/phpmotors/images/upgrades/bumper_sticker.jpg" alt="bumper sticker">
                 <a href="#">Bumper Sticker</a>
             </div>
             <div id='hub-caps'>
-                <img src="images/upgrades/hub-cap.jpg" alt="Hub caps">
+                <img src="/phpmotors/images/upgrades/hub-cap.jpg" alt="Hub caps">
                 <a href="#">Hub Caps</a>
             </div>
         </div>

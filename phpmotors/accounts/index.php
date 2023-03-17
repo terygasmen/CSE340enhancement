@@ -20,21 +20,29 @@ $classifications = getClassifications();
 // Build a navigation bar using the $classifications array
 $navList = createNavigationBar($classifications);
 
-$action = filter_input(INPUT_POST, 'action');
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     if ($action == NULL){
-    $action = filter_input(INPUT_GET, 'action');
+    $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
 
 switch ($action) {
 
+    case 'login':
+        include '../view/login.php';
+        break;
+
+    case 'registration':
+        include '../view/registration.php';
+        break;    
+
     case 'register':
-       
         // Filter and store the data
         $clientFirstname = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $clientLastname = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         
+        // Validate the email and password
         $clientEmail = checkEmail($clientEmail);
         $checkPassword = checkPassword($clientPassword);
 
@@ -42,14 +50,13 @@ switch ($action) {
 
         // Check for existing email address in the table
         if($existingEmail){
-        $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
-        include '../view/login.php';
-        exit;
+            $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
+            include '../view/login.php';
+            exit;
         }
 
         // Check for missing data
-        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword))
-        {
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
             $message = '<p>Please provide information for all empty form fields.</p>';
             include '../view/registration.php';
             exit; 
@@ -66,67 +73,62 @@ switch ($action) {
             setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
             $_SESSION['message'] = "Thanks for registering $clientFirstname. Please use your email and password to login.";
             header('Location: /phpmotors/accounts/?action=login');
-            // include '../view/login.php';
             exit;
         } else {
             $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
             include '../view/registration.php';
             exit;
         }
-
-    case 'login':
-        include '../view/login.php';
         break;
 
     case 'Login':
-            $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
-            $clientEmail = checkEmail($clientEmail);
-            $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $passwordCheck = checkPassword($clientPassword);
+        // Filter the incoming data, validate the email and password
+        $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
+        $clientEmail = checkEmail($clientEmail);
+        $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $passwordCheck = checkPassword($clientPassword);
 
-            // Run basic checks, return if errors
-            if (empty($clientEmail) || empty($passwordCheck)) {
+        // Run basic checks, return if errors
+        if (empty($clientEmail) || empty($passwordCheck)) {
             $message = '<p class="notice">Please provide a valid email address and password.</p>';
             include '../view/login.php';
             exit;
-            }
+        }
             
-            // A valid password exists, proceed with the login process
-            // Query the client data based on the email address
-            $clientData = getClient($clientEmail);
-            // Compare the password just submitted against
-            // the hashed password for the matching client
-            $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
-            // If the hashes don't match create an error
-            // and return to the login view
-            if(!$hashCheck) {
+        // A valid password exists, proceed with the login process
+        // Query the client data based on the email address
+        $clientData = getClient($clientEmail);
+        // Compare the password just submitted against
+        // the hashed password for the matching client
+        $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+        // If the hashes don't match create an error
+        // and return to the login view
+        if(!$hashCheck) {
             $message = '<p class="notice">Please check your password and try again.</p>';
             include '../view/login.php';
             exit;
-            }
-            // A valid user exists, log them in
-            $_SESSION['loggedin'] = TRUE;
-            // Remove the password from the array
-            // the array_pop function removes the last
-            // element from an array
-            array_pop($clientData);
-            // Store the array into the session
-            $_SESSION['clientData'] = $clientData;
-            // Send them to the admin view
-            include '../view/admin.php';
-            exit;
-            break;
+        }
+        // A valid user exists, log them in
+        $_SESSION['loggedin'] = TRUE;
+        // Remove the password from the array
+        // the array_pop function removes the last
+        // element from an array
+        array_pop($clientData);
+        // Store the array into the session
+        $_SESSION['clientData'] = $clientData;
+        
+        // Send them to the admin view
+        include '../view/admin.php';
+        exit;
+        break;
 
-    case 'Logout':
+    case 'Logout': // Log out of current session
         session_destroy();
-        header('Location: /accounts/?action=login');
+        include '../index.php';
         break;
 
-    case 'registration':
-        include '../view/registration.php';
-        break;
     default:
-    include '../view/admin.php';
+        include '../view/admin.php';
         break;
 }
 
