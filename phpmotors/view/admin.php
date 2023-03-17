@@ -34,17 +34,14 @@ if (!$_SESSION['loggedin']){
                 <li><?php echo "Last Name: ".$_SESSION['clientData']['clientLastname'] ?></li>
                 <li><?php echo "Email: ".$_SESSION['clientData']['clientEmail']; ?></li>
             </ul>
-            
-            <!-- <h2>Account Management</h2>
-            <p>Use this link to update account information</p>
-            <p><a href = "/accounts/index.php/?action=updateInfo">Update Account Information</a></p>
+
             <?php
             if (intval($_SESSION['clientData']['clientLevel']) > 1){
                 echo "<h2>Inventory Management</h2>";
                 echo "<p>Use this link to manage the inventory</p>";
-                echo "<a href = '/vehicles/'>Vehicle Management</a>";
+                echo "<a href = '/phpmotors/vehicles/'>Vehicle Management</a>";
             }
-            ?> -->
+            ?>
     </main>
     <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
