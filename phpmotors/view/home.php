@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="co-authored by Ailen Mansilla, Tery Gasmen, Prince Chukwu">
     <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Share+Tech&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/small.css" media="screen">
-    <link rel="stylesheet" href="../css/large.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/small.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/large.css" media="screen">
     <title>Home - PHP Motors</title>
 </head>
 <body class="main_page">

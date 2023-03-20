@@ -20,24 +20,6 @@ $classifications = getClassifications();
 // Build a navigation bar using the $classifications array
 $navList = createNavigationBar($classifications);
 
-// $navList = createNavigationBar($classifications);
-
-// Build a car classification drop down list for the form
-// $carClassifications = "<select name='carClassifications'>";
-// foreach($classifications as $classification) {
-//     $tag = '<option value=""';
-//     if(isset($classificationId)){
-//         if ($classification['classificationId'] === $classificationId){
-//             $tag .= ' selected ';
-//         }
-//     }
-//     $tag .= '>'.$classification['classificationName'].'</option>';
-//     $tag = substr_replace($tag, $classification['classificationId'], 15, 0);
-//     $carClassifications .= $tag;
-// }
-// $carClassifications .= '</select>';
-
-
 $action = filter_input(INPUT_POST, 'action');
   if ($action == NULL){
     $action = filter_input(INPUT_GET, 'action');
@@ -105,12 +87,26 @@ switch ($action){
         }
         // break;
 
-        case 'vehicleManagement':
-            include "../view/vehicle-management.php";
-            break;
+    case 'vehicleManagement':
+        include "../view/vehicle-management.php";
+        break;
+
+    /* * ********************************** 
+    * Get vehicles by classificationId 
+    * Used for starting Update & Delete process 
+    * ********************************** */ 
+    case 'getInventoryItems': 
+        // Get the classificationId 
+        $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT); 
+        // Fetch the vehicles by classificationId from the DB 
+        $inventoryArray = getInventoryByClassification($classificationId); 
+        // Convert the array to a JSON object and send it back 
+        echo json_encode($inventoryArray); 
+        break;
     
-        default:
-            include "../view/vehicle-management.php";
-            break;
+    default:
+        $classificationList = buildClassificationList($classifications);
+        include "../view/vehicle-management.php";
+        break;
         }
 ?>

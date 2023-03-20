@@ -13,7 +13,12 @@ foreach($classifications as $classification) {
 $classifList .= '</select>';
 ?>
 
-<!DOCTYPE html>
+<?php
+if ($_SESSION['clientData']['clientLevel'] < 2) {
+ header('location: /phpmotors/');
+ exit;
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,6 +37,20 @@ $classifList .= '</select>';
         <?php echo $navList; ?>
     </nav>
     <main>
+        <?php
+if (isset($message)) { 
+ echo $message; 
+} 
+if (isset($classificationList)) { 
+ echo '<h2>Vehicles By Classification</h2>'; 
+ echo '<p>Choose a classification to see those vehicles</p>'; 
+ echo $classificationList; 
+}
+?>
+<noscript>
+    <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+    </noscript>
+    <table id="inventoryDisplay"></table>
     <h1>Add Vehicle</h1>
             <p>*Note all Fields are Required</p>
             <?php
@@ -69,6 +88,7 @@ $classifList .= '</select>';
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
     </footer>
 </body>
+<script src="../js/inventory.js"></script>
 </html>
 <?php
 ?>

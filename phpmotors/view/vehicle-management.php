@@ -1,8 +1,9 @@
-<!-- // This view must contain two links:
-// One to the controller that will trigger the delivery of the add classification view.
-// One to the controller that will trigger the delivery of the add vehicle view. -->
-
-<!DOCTYPE html>
+<?php
+if ($_SESSION['clientData']['clientLevel'] < 2) {
+ header('location: /phpmotors/');
+ exit;
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,10 +42,13 @@
                 echo $classificationList; 
             }
             ?>
-            
+            <noscript>
+                <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+            </noscript>
     </main>
     <footer>
     <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
     </footer>
 </body>
+<script src="../js/inventory.js"></script>
 </html>
