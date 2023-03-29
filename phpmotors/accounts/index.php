@@ -1,6 +1,6 @@
 <?php
 
-// This is the accounts controller
+// THIS IS THE ACCOUNTS CONTROLLER
 
 // Create or access a Session
 session_start();
@@ -18,7 +18,7 @@ require_once '../library/functions.php';
 $classifications = getClassifications();
 
 // Build a navigation bar using the $classifications array
-$navList = createNavigationBar($classifications);
+$navList = navbar($classifications);
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     if ($action == NULL){
@@ -26,7 +26,6 @@ $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS)
 }
 
 switch ($action) {
-
     case 'login':
         include '../view/login.php';
         break;
@@ -67,7 +66,6 @@ switch ($action) {
 
         // Send the data to the model
         $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
-
         // Check and report the result
         if ($regOutcome === 1) {
             setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
@@ -86,10 +84,10 @@ switch ($action) {
         $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
         $clientEmail = checkEmail($clientEmail);
         $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $passwordCheck = checkPassword($clientPassword);
+        $checkPassword = checkPassword($clientPassword);
 
         // Run basic checks, return if errors
-        if (empty($clientEmail) || empty($passwordCheck)) {
+        if (empty($clientEmail) || empty($checkPassword)) {
             $message = '<p class="notice">Please provide a valid email address and password.</p>';
             include '../view/login.php';
             exit;
@@ -122,9 +120,95 @@ switch ($action) {
         exit;
         break;
 
-    case 'Logout': // Log out of current session
+    case 'Logout':
         session_destroy();
         include '../index.php';
+        break;
+    
+    case 'updateInfo':
+        include '../view/client-update.php';
+        break;
+
+    case 'updatePersonal':
+        // Get the data from the view.
+        $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
+        $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING);
+        $newEmail = filter_input(INPUT_POST, 'newEmail', FILTER_SANITIZE_EMAIL);
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Validate the new email.
+        $newEmail = checkEmail($newEmail);
+
+        // If email already exist, return client to update page.
+        if (checkExistingEmail($newEmail)){
+            $message = "Email already exist, please try a different one.";
+            include '../view/client-update.php';
+            exit;
+        }
+
+        // Check that all the information is present.
+        if(empty($firstName) || empty($lastName) || empty($newEmail) || empty($invId)){
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/client-update.php';
+            exit;
+        }
+
+        // Update the information in the database.
+        $resultPersonal = updatePersonal($firstName, $lastName, $newEmail, $invId);
+
+        // Query the client data based on the email address
+        $clientData = getClientId($invId);
+        array_pop($clientData);
+        // Store the array into the session
+        $_SESSION['clientData'] = $clientData;
+        
+        // Check and report the result
+        if($resultPersonal === 1){
+            $message = "<p>Information update was a success.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/accounts/');
+            exit;
+        } else {
+            $message = "<p>Sorry, but information update failed. Please try again.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/accounts/');
+            exit;
+        }
+        break;
+    
+    case 'updatePassword':
+        // Get the new password.
+        $newPassword = filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_SPECIAL_CHARS);
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Validate the password
+        $checkPassword = checkPassword($newPassword);
+
+        // Check for missing data
+        if(empty($checkPassword)){
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/client-update.php';
+            exit; 
+        }
+
+        // Hash the checked password
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        // Update the password.
+        $resultPassword = updateNewPassword($hashedPassword, $invId);
+
+        // Check and report the result
+        if($resultPassword === 1){
+            $message = "<p>Password update was a success.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/accounts/');
+            exit;
+        } else {
+            $message = "<p>Sorry, but password update failed. Please try again.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/accounts/');
+            exit;
+        }
         break;
 
     default:

@@ -16,7 +16,7 @@ require_once 'library/functions.php';
 $classifications = getClassifications();
 
 // Build a navigation bar using the $classifications array
-$navList = createNavigationBar($classifications);
+$navList = navbar($classifications);
 
 // Check if the firstname cookie exists, get its value
 if(isset($_COOKIE['firstname'])){
@@ -24,10 +24,9 @@ if(isset($_COOKIE['firstname'])){
 }
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    if ($action == NULL){
+if ($action == NULL){
     $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
-
 
 switch ($action){
     case 'template':
@@ -35,4 +34,6 @@ switch ($action){
         break;
     default:
         include 'view/home.php';
+        break;
 }
+?>

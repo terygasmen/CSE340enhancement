@@ -1,10 +1,5 @@
 <?php
-// This is the accounts model
-
-$clientFirstname;
-$clientLastname;
-$clientEmail;
-$clientPassword;
+// THIS IS THE ACCOUNTS MODEL
 
 // Function that handles site registrations
 function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){
@@ -71,3 +66,50 @@ function getClientId($clientId){
     $stmt->closeCursor();
     return $clientData;
 }
+
+// Update the personal information based on index id.
+function updatePersonal($firstName, $lastName, $newEmail, $clientId){
+    // Create a connection object using the phpmotors connection function
+    $db = phpmotorsConnect();
+    // The SQL statement
+    $sql = 'UPDATE clients SET clientFirstname = :clientFirstname, clientLastname = :clientLastname, clientEmail = :clientEmail WHERE clientId = :clientId';
+    // Create the prepared statement using the phpmotors connection
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientFirstname', $firstName, PDO::PARAM_STR);
+    $stmt->bindValue(':clientLastname', $lastName, PDO::PARAM_STR);
+    $stmt->bindValue(':clientEmail', $newEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    // Insert the data
+    $stmt->execute();
+    // Ask how many rows changed as a result of our insert
+    $rowsChanged = $stmt->rowCount();
+    // Close the database interaction
+    $stmt->closeCursor();
+    // Return the indication of success (rows changed)
+    return $rowsChanged;
+} 
+
+// Update the password based on index id.
+function updateNewPassword($hashedPassword, $clientId){
+    // Create a connection object using the phpmotors connection function
+    $db = phpmotorsConnect();
+    // The SQL statement
+    $sql = 'UPDATE clients SET clientPassword = :clientPassword WHERE clientId = :clientId';
+    // Create the prepared statement using the phpmotors connection
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientPassword', $hashedPassword, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_STR);
+    // Insert the data
+    $stmt->execute();
+    // Ask how many rows changed as a result of our insert
+    $rowsChanged = $stmt->rowCount();
+    // Close the database interaction
+    $stmt->closeCursor();
+    // Return the indication of success (rows changed)
+    return $rowsChanged;
+}
+?>
+
+
+
+

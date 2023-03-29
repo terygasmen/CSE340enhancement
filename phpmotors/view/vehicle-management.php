@@ -1,7 +1,10 @@
-<?php
-if ($_SESSION['clientData']['clientLevel'] < 2) {
- header('location: /phpmotors/');
- exit;
+<?php 
+if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2){
+    header('Location: /index.php/');
+}
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
 }
 ?><!DOCTYPE html>
 <html lang="en">
@@ -9,7 +12,6 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Ailen Mansilla">
     <link rel="stylesheet" href="/phpmotors/css/small.css" media="screen">
     <link rel="stylesheet" href="/phpmotors/css/large.css" media="screen">
     <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Share+Tech&display=swap" rel="stylesheet">
@@ -45,10 +47,12 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
             <noscript>
                 <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
             </noscript>
+            <table id="inventoryDisplay"></table>
     </main>
     <footer>
     <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
     </footer>
+    <script src="../js/inventory.js"></script>
 </body>
-<script src="../js/inventory.js"></script>
 </html>
+<?php unset($_SESSION['message']); ?>
