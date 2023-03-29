@@ -2,7 +2,6 @@
 if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2){
     header('Location: /index.php/');
 }
-
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
 }
@@ -33,7 +32,7 @@ if (isset($_SESSION['message'])) {
             ?>
             <div id="links-add-vehicle-and-classification">
                 <ul>
-                    <li><a href = "/phpmotors/vehicles/?action=classification">Add a car classification.</a></li>
+                    <li><a href = "/phpmotors/vehicles/?action=add-classification">Add a car classification.</a></li>
                     <li><a href = "/phpmotors/vehicles/?action=vehicle">Add a vehicle to inventory.</a></li>
                 </ul>
             </div>

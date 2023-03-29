@@ -10,7 +10,7 @@ if (!($_SESSION['loggedin'] && intval($_SESSION['clientData']['clientLevel']) > 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/phpmotors/css/small.css" media="screen">
     <link rel="stylesheet" href="/phpmotors/css/large.css" media="screen">
-    <title>PHP Motors</title>
+    <title>Add Classification - PHP Motors</title>
 </head>
 <body>
     <header>

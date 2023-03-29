@@ -26,7 +26,7 @@ $action = filter_input(INPUT_POST, 'action');
 }
 
 switch ($action){
-    case 'classification':
+    case 'add-classification':
         include "../view/add-classification.php";
         break;
     
@@ -153,7 +153,7 @@ switch ($action){
         if($updateResult === 1){
             $message = "<p>Vehical update was a success.</p>";
             $_SESSION['message'] = $message;
-            header( 'location: /vehicles/');
+            header( 'location: /phpmotors/vehicles/');
             exit;
         } else {
             $message = "<p>Sorry, but the update failed. Please try again.</p>";
@@ -179,52 +179,54 @@ switch ($action){
         } else {
             $message = "<p>Sorry, but the delete of $make $model failed. Please try again.</p>";
             $_SESSION['message'] = $message;
-            header('location: /vehicles/');
+            header('location: /phpmotors/vehicles/');
             exit;
         }
         break;
 
-    // case 'classification':
-    //     $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    //     $vehicles = getVehiclesByClassification($classificationName);
-    //     if (!count($vehicles)) {
-    //         $message = "<p class='notice'>Sorry, no $classificationName vehicles could be found.</p>";
-    //     } else {
-    //         $vehicleDisplay = buildVehiclesDisplay($vehicles);
-    //     }
-    //     include '../view/classification.php';
-    //     break;
+    case 'classification':
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $vehicles = getVehiclesByClassification($classificationName);
+        if (!count($vehicles)) {
+            $message = "<p class='notice'>Sorry, no $classificationName vehicles could be found.</p>";
+        } else {
+            $vehicleDisplay = buildVehiclesDisplay($vehicles);
+        }
+        echo $vehicleDisplay;
+        exit;   
+        include '../view/classification.php';
+        break;
 
-    // case 'vehicleView':
-    //     // Filter the input
-    //     $vehicleId = filter_input(INPUT_GET, 'Vehicle', FILTER_SANITIZE_NUMBER_INT);
+    case 'vehicleView':
+        // Filter the input
+        $vehicleId = filter_input(INPUT_GET, 'Vehicle', FILTER_SANITIZE_NUMBER_INT);
 
-    //     // Get the vehicles informations
-    //     $vehiclesDetail = getVehicleInfo($vehicleId);
+        // Get the vehicles informations
+        $vehiclesDetail = getVehicleInfo($vehicleId);
 
-    //     // Get the vehicle thumbnails
-    //     $thumbnailsPath = getThumbnails($vehicleId);
-    //     $thumbnailsList = thumbnailHTML($thumbnailsPath);
+        // Get the vehicle thumbnails
+        $thumbnailsPath = getThumbnails($vehicleId);
+        $thumbnailsList = thumbnailHTML($thumbnailsPath);
 
-    //     // Get the vehicle reviews.
-    //     $reviewList = getInventoryReviews($vehicleId);
+        // Get the vehicle reviews.
+        // $reviewList = getInventoryReviews($vehicleId);
 
-    //     // Build the html for the review list.
-    //     $reviewHTML = '<div class = "reviews">';
-    //     foreach($reviewList as $review){
-    //         $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
-    //     }
-    //     $reviewHTML .= "</div>";
+        // Build the html for the review list.
+        $reviewHTML = '<div class = "reviews">';
+        foreach($reviewList as $review){
+            $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
+        }
+        $reviewHTML .= "</div>";
 
-    //     // If empty, return an error message back to the user.
-    //     if (empty($vehiclesDetail)){
-    //         $message = "<p class='notice'>There was an error in getting the vehicle's information</p>";
-    //     } else {
-    //         // If not, build the html for the vehicle information
-    //         $vehicleHTML = buildVehiclesHTML($vehiclesDetail);
-    //     }
-    //     include '../view/vehicle-detail.php';
-    //     break;    
+        // If empty, return an error message back to the user.
+        if (empty($vehiclesDetail)){
+            $message = "<p class='notice'>There was an error in getting the vehicle's information</p>";
+        } else {
+            // If not, build the html for the vehicle information
+            $vehicleHTML = buildVehiclesHTML($vehiclesDetail);
+        }
+        include '../view/vehicle-detail.php';
+        break;    
 
     default:
         $classificationList = buildClassificationList($classifications);
