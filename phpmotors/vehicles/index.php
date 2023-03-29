@@ -191,9 +191,7 @@ switch ($action){
             $message = "<p class='notice'>Sorry, no $classificationName vehicles could be found.</p>";
         } else {
             $vehicleDisplay = buildVehiclesDisplay($vehicles);
-        }
-        echo $vehicleDisplay;
-        exit;   
+        } 
         include '../view/classification.php';
         break;
 
