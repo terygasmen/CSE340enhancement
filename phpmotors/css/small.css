@@ -91,7 +91,6 @@ nav ul{
 } nav li a:hover {
     background-color: var(--darkblue);
     color: white;
-    padding: 1rem;
 }
 
 /* MAIN */
@@ -159,22 +158,32 @@ main div { padding-bottom: 1rem; }
 }
 /* For vehicle display in classification view */
 #inv-display {
-    flex-flow: row wrap;
-    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+}
+
+#inv-display li a {
+    border-radius: 10px;
+    background-color: var(--darkblue);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0.4rem;
+}
+
+#inv-display li a img {
+    object-fit: cover;
+    width: 300px;
+    height: 180px;
 }
 
 #inv-display h2{
-    font-size: 1rem;
-}
-
-#inv-display li {
-    max-width: 200px;
-    flex: 1 0 auto;
-    text-align: center;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    font-size: 1.2rem;
 }
   
 #inv-display div {

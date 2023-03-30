@@ -48,7 +48,6 @@
          $dv .= '<li>';
          $dv .= "<a href = '/phpmotors/vehicles/index.php?action=vehicleView&Vehicle=$vehicle[invId]'>";
          $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
-         $dv .= '<hr>';
          $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
          $dv .= "<span>$vehicle[invPrice]</span>";
          $dv .= '</a>';
