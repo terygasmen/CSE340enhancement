@@ -18,7 +18,7 @@ html {
     box-sizing: inherit;
 }
 body{
-    background-image: url('../images/checker-chess-square-abstract-black-white-background-vector_231786-5341.webp');
+    background-image: url('../images/site/checkerboard.jpg');
     border: 5px solid var(--darkblue);
     border-radius: 15px;
 }  

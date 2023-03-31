@@ -62,7 +62,7 @@
       $dv = "<section class = 'car-details'>";
       $dv .= "<img src='$vehiclesDetail[invImage]' alt='$vehiclesDetail[invMake]-$vehiclesDetail[inModel]'>";
       $dv .= '<h2>Price: $'.number_format($vehiclesDetail['invPrice']).'</h2>';
-      $dv .= "<h2>$vehiclesDetail[invMake] $vehiclesDetail[inModel] Details</h2>";
+      $dv .= "<h2>$vehiclesDetail[invMake] $vehiclesDetail[invModel] Details</h2>";
       $dv .= "<p>$vehiclesDetail[invDescription]</p>";
       $dv .= "<p>Color: $vehiclesDetail[invColor]</p>";
       $dv .= "<p>Number in Stock: $vehiclesDetail[invStock]</p>";

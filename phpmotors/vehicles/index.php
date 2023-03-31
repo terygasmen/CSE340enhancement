@@ -14,6 +14,7 @@ require_once '../model/accounts-model.php';
 require_once '../model/vehicles-model.php';
 // Get the functions library
 require_once '../library/functions.php';
+require_once '../model/uploads-model.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -196,33 +197,34 @@ switch ($action){
         break;
 
     case 'vehicleView':
+        
         // Filter the input
         $vehicleId = filter_input(INPUT_GET, 'Vehicle', FILTER_SANITIZE_NUMBER_INT);
-
+        
         // Get the vehicles informations
         $vehiclesDetail = getVehicleInfo($vehicleId);
-
+        include '../view/vehicle-detail.php';
         // Get the vehicle thumbnails
         $thumbnailsPath = getThumbnails($vehicleId);
         $thumbnailsList = thumbnailHTML($thumbnailsPath);
+        
+        // // // Get the vehicle reviews.
+        // // $reviewList = getInventoryReviews($vehicleId);
 
-        // Get the vehicle reviews.
-        // $reviewList = getInventoryReviews($vehicleId);
+        // // Build the html for the review list.
+        // $reviewHTML = '<div class = "reviews">';
+        // foreach($reviewList as $review){
+        //     $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
+        // }
+        // $reviewHTML .= "</div>";
 
-        // Build the html for the review list.
-        $reviewHTML = '<div class = "reviews">';
-        foreach($reviewList as $review){
-            $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
-        }
-        $reviewHTML .= "</div>";
-
-        // If empty, return an error message back to the user.
-        if (empty($vehiclesDetail)){
-            $message = "<p class='notice'>There was an error in getting the vehicle's information</p>";
-        } else {
-            // If not, build the html for the vehicle information
-            $vehicleHTML = buildVehiclesHTML($vehiclesDetail);
-        }
+        // // If empty, return an error message back to the user.
+        // if (empty($vehiclesDetail)){
+        //     $message = "<p class='notice'>There was an error in getting the vehicle's information</p>";
+        // } else {
+        //     // If not, build the html for the vehicle information
+        //     $vehicleHTML = buildVehiclesHTML($vehiclesDetail);
+        // }
         include '../view/vehicle-detail.php';
         break;    
 
