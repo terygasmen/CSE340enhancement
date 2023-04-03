@@ -192,6 +192,7 @@ main div { padding-bottom: 1rem; }
 .car-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
 }
 .car-details img {
     /* width: 300px; */
@@ -210,6 +211,7 @@ main div { padding-bottom: 1rem; }
     .car-details {
         display: flex;
         flex-direction: column;
+        gap: 2rem;
     }
 }
 
