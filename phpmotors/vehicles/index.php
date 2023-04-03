@@ -203,13 +203,13 @@ switch ($action){
         
         // Get the vehicles informations
         $vehiclesDetail = getVehicleInfo($vehicleId);
-        include '../view/vehicle-detail.php';
-        // Get the vehicle thumbnails
-        $thumbnailsPath = getThumbnails($vehicleId);
-        $thumbnailsList = thumbnailHTML($thumbnailsPath);
         
-        // // // Get the vehicle reviews.
-        // // $reviewList = getInventoryReviews($vehicleId);
+        // Get the vehicle thumbnails
+        // $thumbnailsPath = getThumbnails($vehicleId);
+        // $thumbnailsList = thumbnailHTML($thumbnailsPath);
+        
+        // // Get the vehicle reviews.
+        // $reviewList = getInventoryReviews($vehicleId);
 
         // // Build the html for the review list.
         // $reviewHTML = '<div class = "reviews">';
@@ -218,13 +218,13 @@ switch ($action){
         // }
         // $reviewHTML .= "</div>";
 
-        // // If empty, return an error message back to the user.
-        // if (empty($vehiclesDetail)){
-        //     $message = "<p class='notice'>There was an error in getting the vehicle's information</p>";
-        // } else {
-        //     // If not, build the html for the vehicle information
-        //     $vehicleHTML = buildVehiclesHTML($vehiclesDetail);
-        // }
+        // If empty, return an error message back to the user.
+        if (empty($vehiclesDetail)){
+            $message = "<p class='notice'>There was an error in getting the vehicle's information</p>";
+        } else {
+            // If not, build the html for the vehicle information
+            $vehicleHTML = buildVehiclesHTML($vehiclesDetail);
+        }
         include '../view/vehicle-detail.php';
         break;    
 

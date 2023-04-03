@@ -189,6 +189,29 @@ main div { padding-bottom: 1rem; }
 #inv-display div {
     width: 100%;
 }
+.car-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.car-details img {
+    /* width: 300px; */
+    /* object-fit: cover; */
+    /* margin: 0 2rem 2rem 0; */
+    border-radius: 10px;
+    border: solid 10px var(--darkblue);
+    grid-column: 1/2;
+    grid-row: 1/6;
+}
+.car-details h2, .car-details p {
+    grid-column: 2/3;
+}
+
+@media only screen and (max-width: 800px) {
+    .car-details {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 /* Footer */
 footer {

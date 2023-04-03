@@ -18,7 +18,8 @@
         </nav>
         <main>
             <h1><?php echo "$vehiclesDetail[invMake] $vehiclesDetail[invModel]"; ?></h1>
-            <?php if(isset($message)){
+            <?php 
+                if(isset($message)){
                     echo $message; }
             ?>
             <?php 
@@ -26,9 +27,11 @@
                     echo $thumbnailsList;
                 }
             ?>
-            <?php if(isset($vehicleHTML)){
+            <?php 
+            if(isset($vehicleHTML)){
                     echo $vehicleHTML; } 
             ?>
+
         </main>
         <footer>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
