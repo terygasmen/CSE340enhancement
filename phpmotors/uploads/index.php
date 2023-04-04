@@ -6,11 +6,9 @@ session_start();
 
 // Get the database connection file
 require_once '../library/connections.php';
-// Get the main model for use as needed
 require_once '../model/main-model.php';
-// Get the accounts model
-require_once '../model/accounts-model.php';
-// Get the functions library
+require_once '../model/vehicles-model.php';
+require_once '../model/uploads-model.php';
 require_once '../library/functions.php';
 
 
@@ -23,14 +21,14 @@ $navList = navbar($classifications);
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if ($action == NULL) {
-    $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
 
 /* * ****************************************************
 * Variables for use with the Image Upload Functionality
 * **************************************************** */
 // directory name where uploaded images are stored
-$image_dir = '/phpmotors/img';
+$image_dir = '/phpmotors/uploads/images';
 // The path is the full path from the server root
 $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir;
 
@@ -123,5 +121,5 @@ switch ($action) {
 
         include '../view/image-admin.php';
         exit;
-        break;
+        // break;
 }

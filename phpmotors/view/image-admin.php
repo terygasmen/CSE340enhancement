@@ -10,8 +10,8 @@ if (isset($_SESSION['message'])) {
     <title>Image Management</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Share+Tech&display=swap" rel="stylesheet">
-    <link rel = "stylesheet" href = "/css/normalize.css">
-    <link rel = "stylesheet" media="screen" href = "/css/main.css">
+    <link rel="stylesheet" href="/phpmotors/css/small.css" media="screen">
+        <link rel="stylesheet" href="/phpmotors/css/large.css" media="screen">
 </head>
 <body>
     <div class = "page">
@@ -23,18 +23,15 @@ if (isset($_SESSION['message'])) {
         </nav>
         <main>
             <h1>Image Management</h1>
-            <p>
-                Welcome to image management.
-            </p>
+            <p>Welcome to Image Management!</p>
             <h2>Add New Vehicle Image</h2>
             <?php
             if (isset($message)) {
                 echo $message;
             } ?>
-            <form action="/uploads/" method="post" enctype="multipart/form-data">
+            <form action="/phpmotors/uploads/" method="post" enctype="multipart/form-data">
             <label for="invItem">Vehicle</label>
                 <?php echo $prodSelect; ?>
-                <br>
                 <fieldset>
                     <label>Is this the main image for the vehicle?</label>
                     <label for="priYes" class="pImage">Yes</label>
@@ -44,11 +41,10 @@ if (isset($_SESSION['message'])) {
                 </fieldset>
             <label>Upload Image:</label>
             <input type="file" name="file1">
-            <br>
-            <br>
             <input type="submit" class="regbtn" value="Upload">
             <input type="hidden" name="action" value="upload">
             </form>
+
             <h2>Existing Images</h2>
             <p class="notice">If deleting an image, delete the thumbnail too and vice versa.</p>
             <?php

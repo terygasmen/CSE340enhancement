@@ -150,8 +150,7 @@ function processImage($dir, $filename) {
   
    // Resize original to a maximum of 500 pixels square
    resizeImage($image_path, $image_path, 500, 500);
-  }
-
+}
 
 // Checks and Resizes image
 function resizeImage($old_image_path, $new_image_path, $max_width, $max_height){
