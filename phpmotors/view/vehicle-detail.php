@@ -16,7 +16,7 @@
         <nav>
             <?php echo $navList; ?>
         </nav>
-        <main>
+        <main class="vehicle-detail_page">
             <h1><?php echo "$vehiclesDetail[invMake] $vehiclesDetail[invModel]"; ?></h1>
             <?php 
                 if(isset($message)){

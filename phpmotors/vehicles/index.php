@@ -205,8 +205,8 @@ switch ($action){
         $vehiclesDetail = getVehicleInfo($vehicleId);
         
         // Get the vehicle thumbnails
-        // $thumbnailsPath = getThumbnails($vehicleId);
-        // $thumbnailsList = thumbnailHTML($thumbnailsPath);
+        $thumbnailsPath = getThumbnails($vehicleId);
+        $thumbnailsList = thumbnailHTML($thumbnailsPath);
         
         // // Get the vehicle reviews.
         // $reviewList = getInventoryReviews($vehicleId);

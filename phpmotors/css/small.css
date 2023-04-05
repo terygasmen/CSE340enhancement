@@ -208,14 +208,6 @@ main div { padding-bottom: 1rem; }
     grid-column: 2/3;
 }
 
-@media only screen and (max-width: 800px) {
-    .car-details {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-}
-
 #image-display {
     list-style: none;
     padding: 0.5rem;
@@ -234,6 +226,15 @@ main div { padding-bottom: 1rem; }
 #image-display a {
     color: black;
 }
+.vehicle-detail_page {
+    display: flex;
+    flex-direction: column;
+}
+#thumbnail-list {
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* Footer */
 footer {
