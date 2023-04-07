@@ -175,7 +175,7 @@ switch ($action){
         if($deleteResult === 1){
             $message = "<p>Vehical delete of $make $model was a success.</p>";
             $_SESSION['message'] = $message;
-            header('location: /vehicles/');
+            header('location: /phpmotors/vehicles/');
             exit;
         } else {
             $message = "<p>Sorry, but the delete of $make $model failed. Please try again.</p>";
@@ -197,26 +197,25 @@ switch ($action){
         break;
 
     case 'vehicleView':
-        
         // Filter the input
         $vehicleId = filter_input(INPUT_GET, 'Vehicle', FILTER_SANITIZE_NUMBER_INT);
-        
+
         // Get the vehicles informations
         $vehiclesDetail = getVehicleInfo($vehicleId);
-        
+
         // Get the vehicle thumbnails
         $thumbnailsPath = getThumbnails($vehicleId);
         $thumbnailsList = thumbnailHTML($thumbnailsPath);
-        
-        // // Get the vehicle reviews.
+
+        // Get the vehicle reviews.
         // $reviewList = getInventoryReviews($vehicleId);
 
-        // // Build the html for the review list.
-        // $reviewHTML = '<div class = "reviews">';
-        // foreach($reviewList as $review){
-        //     $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
-        // }
-        // $reviewHTML .= "</div>";
+        // Build the html for the review list.
+        $reviewHTML = '<div class = "reviews">';
+        foreach($reviewList as $review){
+            $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
+        }
+        $reviewHTML .= "</div>";
 
         // If empty, return an error message back to the user.
         if (empty($vehiclesDetail)){
@@ -225,8 +224,10 @@ switch ($action){
             // If not, build the html for the vehicle information
             $vehicleHTML = buildVehiclesHTML($vehiclesDetail);
         }
+
         include '../view/vehicle-detail.php';
-        break;    
+        break;
+        
 
     default:
         $classificationList = buildClassificationList($classifications);

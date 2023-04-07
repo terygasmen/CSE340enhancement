@@ -5,8 +5,7 @@
  */
 
 // The function inserts a review in the review table.
-function addReview($reviewText, $invId, $clientId)
-{
+function addReview($reviewText, $invId, $clientId) {
     // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
     // The SQL statement
@@ -32,7 +31,15 @@ function addReview($reviewText, $invId, $clientId)
 // The function gets reviews for an inventory item.
 function getInventoryReviews($invId){
     $db = phpmotorsConnect();
-    $sql = 'SELECT r.reviewId, r.reviewText, r.reviewDate, r.invId, r.clientId, c.clientFirstname, c.clientLastname FROM reviews r INNER JOIN clients c ON c.clientId = r.clientId WHERE invId = :invId';
+    $sql = 'SELECT r.reviewId, r.reviewText, r.reviewDate, r.invId, r.clientId, c.clientFirstname, c.clientLastname 
+        FROM reviews r INNER JOIN clients c ON c.clientId = r.clientId 
+        WHERE invId = :invId';
+    // $sql = ' SELECT inventory.invMake, inventory.invModel, reviews.reviewId, reviews.reviewText, reviews.reviewDate, clients.clientFirstname, clients.clientLastname, clients.clientId
+    //         FROM reviews 
+    //         INNER JOIN inventory ON reviews.invId=inventory.invId
+    //         INNER JOIN clients ON reviews.clientId=clients.clientId
+    //         WHERE reviews.invId = :invId
+    //         ORDER BY reviews.reviewDate DESC'; 
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
@@ -40,6 +47,7 @@ function getInventoryReviews($invId){
     $stmt->closeCursor();
     return $reviewList;
 }
+
 
 // The function gets reviews written by a client.
 function getClientReviews($clientId){

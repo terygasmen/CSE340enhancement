@@ -39,6 +39,7 @@ if (isset($_SESSION['message'])) {
                     <label for="priNo" class="pImage">No</label>
                     <input type="radio" name="imgPrimary" id="priNo" class="pImage" checked value="0">
                 </fieldset>
+                
             <label>Upload Image:</label>
             <input type="file" name="file1">
             <input type="submit" class="regbtn" value="Upload">
