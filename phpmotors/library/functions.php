@@ -258,9 +258,9 @@ function buildReviewItem($reviewDate, $reviewId) {
    $htmlText = '<li>';
    $timestamp = strtotime($reviewDate);
    $htmlText .= 'Review Created on: '.date('m/d/Y H:i:s', $timestamp);
-   $htmlText .= ' <a href = "/reviews/index.php?action=confirmEdit&review='.$reviewId.'">Edit</a>';
+   $htmlText .= ' <a href = "/phpmotors/reviews/index.php?action=confirmEdit&review='.$reviewId.'">Edit</a>';
    $htmlText .= ' | ';
-   $htmlText .= '<a href = "/reviews/index.php?action=confirmDelete&review='.$reviewId.'">Delete</a>';
+   $htmlText .= '<a href = "/phpmotors/reviews/index.php?action=confirmDelete&review='.$reviewId.'">Delete</a>';
    $htmlText .= '</li>';
    return $htmlText;
 }

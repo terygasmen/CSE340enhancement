@@ -34,12 +34,6 @@ function getInventoryReviews($invId){
     $sql = 'SELECT r.reviewId, r.reviewText, r.reviewDate, r.invId, r.clientId, c.clientFirstname, c.clientLastname 
         FROM reviews r INNER JOIN clients c ON c.clientId = r.clientId 
         WHERE invId = :invId';
-    // $sql = ' SELECT inventory.invMake, inventory.invModel, reviews.reviewId, reviews.reviewText, reviews.reviewDate, clients.clientFirstname, clients.clientLastname, clients.clientId
-    //         FROM reviews 
-    //         INNER JOIN inventory ON reviews.invId=inventory.invId
-    //         INNER JOIN clients ON reviews.clientId=clients.clientId
-    //         WHERE reviews.invId = :invId
-    //         ORDER BY reviews.reviewDate DESC'; 
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
@@ -64,7 +58,9 @@ function getClientReviews($clientId){
 // The function gets a review from review id
 function getReview($reviewId){
     $db = phpmotorsConnect();
-    $sql = 'SELECT r.reviewId, r.reviewText, r.reviewDate, r.invId, r.clientId, c.clientFirstname, c.clientLastname FROM reviews r INNER JOIN clients c ON c.clientId = r.clientId WHERE r.reviewId = :reviewId';
+    $sql = 'SELECT r.reviewId, r.reviewText, r.reviewDate, r.invId, r.clientId, c.clientFirstname, c.clientLastname 
+            FROM reviews r INNER JOIN clients c ON c.clientId = r.clientId 
+            WHERE r.reviewId = :reviewId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
     $stmt->execute();

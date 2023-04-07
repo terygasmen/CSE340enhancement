@@ -45,7 +45,10 @@
             }
         ?>
         <h3>Your Reviews</h3>
-        <?php echo $reviewHTML; ?>
+        <?php // Put the reviews on the page.
+        if (isset($reviewHTML)){
+            echo $reviewHTML;
+        } ?>
     </main>
     <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>

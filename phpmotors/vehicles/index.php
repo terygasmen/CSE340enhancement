@@ -212,6 +212,7 @@ switch ($action){
 
         // Build the html for the review list.
         $reviewHTML = '<div class = "reviews">';
+        
         foreach($reviewList as $review){
             $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
         }
@@ -228,7 +229,6 @@ switch ($action){
         include '../view/vehicle-detail.php';
         break;
         
-
     default:
         $classificationList = buildClassificationList($classifications);
         include '../view/vehicle-management.php';
